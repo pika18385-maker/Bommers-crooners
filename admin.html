@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#111218">
+  <title>Administration — Boomers Crooners</title>
+  <style>
+    :root{color-scheme:dark;--bg:#101116;--panel:#191a21;--panel2:#20222b;--text:#f6f1e8;--muted:#bcb8b1;--gold:#e0b568;--line:#393a42;--red:#ffb6b6;--green:#b8f3cc;--blue:#c4ddff}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#27211a 0,transparent 40%),var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}a{color:var(--gold);overflow-wrap:anywhere}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.wrap{width:min(1060px,calc(100% - 28px));margin:auto}.top{padding:32px 0 22px;border-bottom:1px solid var(--line)}.eyebrow{text-transform:uppercase;letter-spacing:.17em;color:var(--gold);font-weight:700;font-size:.78rem}.top h1{font:clamp(2rem,5vw,3.25rem)/1.07 Georgia,serif;margin:.4rem 0}.top p{max-width:760px;color:var(--muted);margin:.5rem 0 0}.card{background:rgba(25,26,33,.96);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,3vw,25px);margin:18px 0;box-shadow:0 12px 32px #0002}.card h2{font:1.5rem Georgia,serif;margin:0 0 8px}.lead,.muted{color:var(--muted)}.lead{margin:0 0 18px}.hint{border-left:3px solid var(--gold);background:#28251f;padding:12px 14px;color:#e6dfd3;border-radius:0 8px 8px 0;font-size:.92rem;margin:14px 0}.field{display:flex;flex-direction:column;gap:6px;min-width:0}.field label{font-size:.9rem;color:#ded8cc;font-weight:650}.field input,.field textarea,.field select{width:100%;min-width:0;border:1px solid #4a4b54;border-radius:9px;background:#101116;color:var(--text);padding:11px 12px;outline:none}.field textarea{min-height:95px;resize:vertical}.field input:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px #e0b56820}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.full{grid-column:1/-1}.buttons{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;background:var(--gold);border:1px solid var(--gold);border-radius:9px;padding:10px 15px;color:#18140d;font-weight:800;text-decoration:none}.btn.secondary{background:transparent;color:var(--text);border-color:#60616b}.btn.danger{background:#402326;border-color:#8e444a;color:#ffd9d9}.btn.small{font-size:.86rem;padding:6px 10px}.status{display:none;margin-top:16px;padding:13px 14px;border:1px solid var(--line);border-radius:10px;white-space:pre-wrap;overflow-wrap:anywhere}.status.show{display:block}.status.info{color:var(--blue);background:#1a2531;border-color:#3b5974}.status.error{color:var(--red);background:#301d21;border-color:#754047}.status.ok{color:var(--green);background:#19291f;border-color:#376248}.status a{display:block;margin-top:8px}.hidden{display:none!important}.pills{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:15px 0}.pill{border:1px solid var(--line);background:#17181e;border-radius:999px;padding:5px 10px;color:var(--muted);font-size:.85rem}.divider{height:1px;background:var(--line);margin:20px 0}.item{border:1px solid var(--line);background:#14151a;border-radius:12px;padding:15px;margin-top:12px}.item-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.item-head h3{margin:0;font-size:1.04rem}.item .grid{gap:10px}.file-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.file-row input[type=file]{max-width:100%;font-size:.85rem;color:var(--muted)}.savebar{position:sticky;bottom:0;background:#101116f2;border-top:1px solid var(--line);backdrop-filter:blur(12px);padding:12px 0;z-index:5}.saveinner{display:flex;justify-content:space-between;align-items:center;gap:14px}.saveinner p{margin:0;color:var(--muted);font-size:.9rem}.footer{color:var(--muted);font-size:.85rem;padding:12px 0 36px}.warning{font-size:.9rem;color:#e9d8b5}.okline{color:var(--green)}code{background:#111218;border:1px solid var(--line);border-radius:5px;padding:2px 5px}
+    @media(max-width:680px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.saveinner{align-items:stretch;flex-direction:column}.saveinner .btn{width:100%}.top{padding-top:24px}.card{border-radius:12px}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap"><div class="eyebrow">Boomers Crooners · espace privé</div><h1>Administration du site</h1><p>Modifie les textes, les liens, les photos et les concerts. Le panneau prépare une branche puis une Pull Request : rien n’est publié tant que tu n’as pas fusionné la Pull Request sur GitHub.</p></div></header>
+  <main class="wrap">
+    <section id="login-card" class="card">
+      <h2>Connexion à GitHub</h2><p class="lead">Le jeton sert uniquement dans cet onglet. Il n’est ni enregistré dans le navigateur, ni inclus dans ce fichier.</p>
+      <div class="hint"><strong>Prérequis du jeton :</strong> jeton à granularité fine limité au dépôt <code>pika18385-maker/Bommers-crooners</code>, avec <em>Contents — Read and write</em> et <em>Pull requests — Read and write</em>. Ne partage jamais le jeton. Tu peux le révoquer dans les paramètres GitHub.</div>
+      <div class="field"><label for="token">Jeton GitHub</label><input id="token" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_…"></div>
+      <div class="buttons"><button id="connect" class="btn">Se connecter</button><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">Créer un jeton à granularité fine ↗</a></div>
+      <div id="login-status" class="status" role="status" aria-live="polite"></div>
+    </section>
+
+    <div id="editor" class="hidden">
+      <div class="pills"><span class="pill">Dépôt : pika18385-maker/Bommers-crooners</span><span id="user-pill" class="pill">Connecté</span><span class="pill">Branche cible : main</span><button id="logout" class="btn secondary small">Déconnexion</button></div>
+      <div id="edit-status" class="status" role="status" aria-live="polite"></div>
+      <section class="card"><h2>Textes et liens</h2><p class="lead">Les champs sont enregistrés dans <code>site-data.json</code>. Les images peuvent être indiquées par URL ou téléversées depuis ton appareil.</p><div id="fields" class="grid"></div></section>
+      <section class="card"><h2>Concerts</h2><p class="lead">Ajoute ou modifie les dates. Laisse les champs facultatifs vides si nécessaire.</p><div id="concerts"></div><div class="buttons"><button id="add-concert" class="btn secondary">＋ Ajouter un concert</button></div></section>
+      <section class="card"><h2>Galerie photos</h2><p class="lead">Chaque photo dispose d’une URL, d’une légende et d’un texte alternatif. Le téléversement accepte les fichiers JPG, PNG et WebP de 3 Mo maximum.</p><div id="gallery"></div><div class="buttons"><button id="add-photo" class="btn secondary">＋ Ajouter une photo</button></div></section>
+      <section class="card"><h2>Publication</h2><p class="lead">À la validation, le panneau crée une branche, enregistre les modifications puis tente de créer une Pull Request. Il affichera l’étape exacte et un lien vers la branche si une étape échoue.</p><div class="warning">Ne ferme pas cet onglet pendant la sauvegarde. Le jeton n’est pas envoyé à un serveur tiers : les appels sont faits directement vers l’API GitHub.</div><div id="save-status" class="status" role="status" aria-live="polite"></div></section>
+      <div class="savebar"><div class="wrap saveinner"><p id="dirty-note">Aucune modification en attente.</p><button id="finish" class="btn" disabled>Terminer — créer une Pull Request</button></div></div>
+    </div>
+    <div class="footer">Panneau statique pour GitHub Pages. L’accès en écriture est contrôlé par les permissions du jeton GitHub, et non par un mot de passe inscrit dans le code.</div>
+  </main>
+<script>
+(function(){
+  'use strict';
+  const OWNER='pika18385-maker', REPO='Bommers-crooners', BASE='main', API='https://api.github.com';
+  const $=id=>document.getElementById(id);
+  let token='', data=null, originalSha='', originalSnapshot='', loggedUser='', dirty=false, busy=false, prCreated=false, branchName='', pendingUploads={};
+  const fields=[
+    {key:'groupName',label:'Nom du groupe'},{key:'strapline',label:'Phrase sous le nom'},
+    {key:'heroTitle',label:'Titre principal',multi:true},{key:'heroText',label:'Texte d’introduction',multi:true},
+    {key:'heroImage',label:'Image de couverture',image:true},{key:'aboutTitle',label:'Titre de présentation'},
+    {key:'aboutText',label:'Texte de présentation',multi:true},{key:'aboutImage',label:'Photo de présentation',image:true},
+    {key:'musicTitle',label:'Titre de la section musique'},{key:'musicText',label:'Texte de la section musique',multi:true},
+    {key:'musicImage',label:'Image de la section musique',image:true},{key:'musicLink',label:'Lien d’écoute officiel',url:true},
+    {key:'concertsTitle',label:'Titre de l’agenda'},{key:'galleryTitle',label:'Titre de la galerie'},
+    {key:'contactTitle',label:'Titre de contact'},{key:'contactText',label:'Texte de contact',multi:true},
+    {key:'email',label:'E-mail public',email:true},{key:'instagram',label:'Lien Instagram',url:true},
+    {key:'youtube',label:'Lien YouTube',url:true},{key:'facebook',label:'Lien Facebook',url:true}
+  ];
+  function setStatus(id,message,type='info',links=[]){
+    const el=$(id); el.replaceChildren(); el.className='status show '+type;
+    const p=document.createElement('div'); p.textContent=message; el.appendChild(p);
+    links.forEach(item=>{const a=document.createElement('a');a.href=item.href;a.textContent=item.label;a.target='_blank';a.rel='noopener noreferrer';el.appendChild(a);});
+  }
+  function clearStatus(id){const el=$(id);el.replaceChildren();el.className='status';}
+  function clone(v){return JSON.parse(JSON.stringify(v));}
+  function decodeBase64Utf8(content){const clean=String(content||'').replace(/\s/g,'');const binary=atob(clean);const bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);return new TextDecoder('utf-8').decode(bytes);}
+  function encodeBase64Utf8(text){const bytes=new TextEncoder().encode(text);let binary='';const chunk=0x8000;for(let i=0;i<bytes.length;i+=chunk)binary+=String.fromCharCode.apply(null,bytes.subarray(i,Math.min(i+chunk,bytes.length)));return btoa(binary);}
+  function apiErrorMessage(status,body){
+    const detail=(body&&body.message)||'Aucun détail fourni par GitHub.';
+    if(status===401)return 'HTTP 401 — jeton invalide, expiré ou révoqué. Reconnecte-toi avec un jeton valide.';
+    if(status===403)return 'HTTP 403 — accès refusé par GitHub. Vérifie que le jeton cible le bon dépôt et possède Contents: Read and write ainsi que Pull requests: Read and write. Détail GitHub : '+detail;
+    if(status===404)return 'HTTP 404 — dépôt, fichier ou branche introuvable, ou accès non autorisé. Détail GitHub : '+detail;
+    if(status===409)return 'HTTP 409 — le contenu du dépôt a changé pendant l’opération. Recharge le panneau et réessaie. Détail GitHub : '+detail;
+    if(status===422)return 'HTTP 422 — GitHub a refusé la création (souvent une branche déjà utilisée, aucun changement ou une Pull Request existante). Détail GitHub : '+detail;
+    return 'HTTP '+status+' — '+detail;
+  }
+  async function api(path,options={}){
+    let response;
+    try{
+      response=await fetch(API+path,{...options,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2022-11-28',...(options.body?{'Content-Type':'application/json'}:{}),...(options.headers||{})}});
+    }catch(err){throw new Error('Connexion à l’API GitHub impossible. Vérifie la connexion Internet et recharge la page si nécessaire. Détail : '+(err&&err.message?err.message:'échec réseau'));}
+    const raw=await response.text();let body={};try{body=raw?JSON.parse(raw):{};}catch(_){body={message:raw||'Réponse non JSON'};}
+    if(!response.ok)throw new Error(apiErrorMessage(response.status,body));
+    return body;
+  }
+  function contentsUrl(path,ref){return '/repos/'+OWNER+'/'+REPO+'/contents/'+path.split('/').map(encodeURIComponent).join('/')+'?ref='+encodeURIComponent(ref);}
+  function branchLink(branch){return 'https://github.com/'+OWNER+'/'+REPO+'/tree/'+branch;}
+  function compareLink(branch){return 'https://github.com/'+OWNER+'/'+REPO+'/compare/'+BASE+'...'+branch+'?expand=1';}
+  function updateDirtyNote(){ $('dirty-note').textContent=prCreated?'Pull Request créée. Vérifie-la sur GitHub.':dirty?'Modifications non envoyées : elles seront proposées dans une Pull Request.':'Aucune modification en attente.'; }
+  function markDirty(){dirty=true;updateDirtyNote();$('finish').disabled=busy||prCreated;}
+  function urlField(spec,value){
+    const wrap=document.createElement('div');wrap.className='field'+(spec.multi?' full':'');
+    const label=document.createElement('label');label.htmlFor='field-'+spec.key;label.textContent=spec.label;wrap.appendChild(label);
+    const el=document.createElement(spec.multi?'textarea':'input');el.id='field-'+spec.key;el.dataset.field=spec.key;el.value=value||'';
+    if(spec.email)el.type='email';else if(spec.url||spec.image)el.type='url';else if(!spec.multi)el.type='text';
+    el.placeholder=spec.image?'https://…':'';wrap.appendChild(el);
+    if(spec.image){const row=document.createElement('div');row.className='file-row';const input=document.createElement('input');input.type='file';input.accept='image/jpeg,image/png,image/webp';input.dataset.uploadField=spec.key;row.appendChild(input);wrap.appendChild(row);}
+    return wrap;
+  }
+  function renderFields(){const root=$('fields');root.replaceChildren();fields.forEach(spec=>root.appendChild(urlField(spec,data[spec.key])));}
+  function createInput(labelText,value,kind,attrs={}){
+    const wrap=document.createElement('div');wrap.className='field'+(attrs.full?' full':'');const label=document.createElement('label');label.textContent=labelText;wrap.appendChild(label);
+    const el=document.createElement(kind==='textarea'?'textarea':'input');if(kind!=='textarea')el.type=kind||'text';el.value=value||'';if(attrs.placeholder)el.placeholder=attrs.placeholder;if(attrs.key)el.dataset.key=attrs.key;wrap.appendChild(el);return {wrap,el};
+  }
+  function renderConcerts(){
+    const root=$('concerts');root.replaceChildren();
+    (data.concerts||[]).forEach((c,i)=>{
+      const item=document.createElement('div');item.className='item';item.dataset.concert=i;
+      const head=document.createElement('div');head.className='item-head';const title=document.createElement('h3');title.textContent='Concert '+(i+1);head.appendChild(title);
+      const remove=document.createElement('button');remove.className='btn danger small';remove.type='button';remove.textContent='Supprimer';remove.dataset.removeConcert=i;head.appendChild(remove);item.appendChild(head);
+      const grid=document.createElement('div');grid.className='grid';
+      [['date','Date (AAAA-MM-JJ)','date'],['title','Nom du concert','text'],['venue','Salle / lieu','text'],['city','Ville','text'],['ticketUrl','Lien de billetterie','url']].forEach(([key,label,type])=>{const f=createInput(label,c[key],type,{key:'concert.'+i+'.'+key,full:key==='ticketUrl'});grid.appendChild(f.wrap);});
+      item.appendChild(grid);root.appendChild(item);
+    });
+    if(!(data.concerts||[]).length){const p=document.createElement('p');p.className='muted';p.textContent='Aucun concert ajouté pour le moment.';root.appendChild(p);}
+  }
+  function renderGallery(){
+    const root=$('gallery');root.replaceChildren();
+    (data.gallery||[]).forEach((g,i)=>{
+      const item=document.createElement('div');item.className='item';
+      const head=document.createElement('div');head.className='item-head';const title=document.createElement('h3');title.textContent='Photo '+(i+1);head.appendChild(title);
+      const remove=document.createElement('button');remove.className='btn danger small';remove.type='button';remove.textContent='Supprimer';remove.dataset.removePhoto=i;head.appendChild(remove);item.appendChild(head);
+      const grid=document.createElement('div');grid.className='grid';
+      [['image','URL de la photo','url'],['caption','Légende','text'],['alt','Texte alternatif (accessibilité)','text']].forEach(([key,label,type])=>{const f=createInput(label,g[key],type,{key:'gallery.'+i+'.'+key,full:key!=='image'});grid.appendChild(f.wrap);});
+      const upload=document.createElement('div');upload.className='field full';const label=document.createElement('label');label.textContent='Ou téléverser une nouvelle image';upload.appendChild(label);const input=document.createElement('input');input.type='file';input.accept='image/jpeg,image/png,image/webp';input.dataset.uploadGallery=g.id;upload.appendChild(input);grid.appendChild(upload);item.appendChild(grid);root.appendChild(item);
+    });
+    if(!(data.gallery||[]).length){const p=document.createElement('p');p.className='muted';p.textContent='La galerie est vide.';root.appendChild(p);}
+  }
+  function readEditorIntoData(){
+    fields.forEach(spec=>{const el=document.querySelector('[data-field="'+spec.key+'"]');if(el)data[spec.key]=el.value;});
+    document.querySelectorAll('[data-key]').forEach(el=>{const parts=el.dataset.key.split('.');if(parts[0]==='concert'&&data.concerts[Number(parts[1])])data.concerts[Number(parts[1])][parts[2]]=el.value;if(parts[0]==='gallery'&&data.gallery[Number(parts[1])])data.gallery[Number(parts[1])][parts[2]]=el.value;});
+  }
+  function normalizeData(){const out=clone(data);out.concerts=(out.concerts||[]).map(c=>({date:c.date||'',title:c.title||'',venue:c.venue||'',city:c.city||'',ticketUrl:c.ticketUrl||''}));out.gallery=(out.gallery||[]).map((g,i)=>({id:g.id||('photo-'+i),image:g.image||'',caption:g.caption||'',alt:g.alt||''}));return out;}
+  async function connect(){
+    const candidate=$('token').value.trim();if(!candidate){setStatus('login-status','Colle ton jeton GitHub dans le champ ci-dessus.','error');return;}
+    token=candidate;$('token').value='';$('connect').disabled=true;setStatus('login-status','Vérification du compte, du dépôt et de site-data.json…','info');
+    try{
+      const user=await api('/user');loggedUser=user.login||'compte GitHub';
+      const repo=await api('/repos/'+OWNER+'/'+REPO);if(repo.default_branch&&repo.default_branch!==BASE)throw new Error('La branche par défaut du dépôt est « '+repo.default_branch+' », alors que le panneau est configuré pour « '+BASE+' ».');
+      const file=await api(contentsUrl('site-data.json',BASE));if(!file.content)throw new Error('GitHub a renvoyé un fichier site-data.json sans contenu lisible.');
+      data=JSON.parse(decodeBase64Utf8(file.content));originalSha=file.sha;
+      if(!Array.isArray(data.concerts))data.concerts=[];if(!Array.isArray(data.gallery))data.gallery=[];
+      data.gallery.forEach((g,i)=>{if(!g.id)g.id='photo-'+i+'-'+Math.random().toString(36).slice(2,7);});
+      pendingUploads={};dirty=false;prCreated=false;branchName='';originalSnapshot=JSON.stringify(normalizeData());
+      $('user-pill').textContent='Connecté : @'+loggedUser;$('login-card').classList.add('hidden');$('editor').classList.remove('hidden');
+      renderFields();renderConcerts();renderGallery();clearStatus('login-status');clearStatus('edit-status');clearStatus('save-status');updateDirtyNote();$('finish').disabled=true;
+    }catch(err){token='';setStatus('login-status','Connexion impossible. '+err.message,'error');}
+    finally{$('connect').disabled=false;}
+  }
+  function safeName(name){return String(name||'photo').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9.-]+/g,'-').replace(/^-+|-+$/g,'').slice(-60)||'photo';}
+  function extensionFor(file){const type=(file.type||'').toLowerCase();if(type==='image/jpeg')return 'jpg';if(type==='image/png')return 'png';if(type==='image/webp')return 'webp';throw new Error('Format non accepté pour « '+file.name+' ». Utilise JPG, PNG ou WebP.');}
+  function fileToBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>{const value=String(reader.result||'');const comma=value.indexOf(',');if(comma<0)reject(new Error('Impossible de lire le fichier image.'));else resolve(value.slice(comma+1));};reader.onerror=()=>reject(new Error('La lecture de l’image « '+file.name+' » a échoué.'));reader.readAsDataURL(file);});}
+  async function uploadImage(file,key,branch){
+    if(file.size>3*1024*1024)throw new Error('L’image « '+file.name+' » dépasse 3 Mo. Choisis un fichier plus léger.');
+    const ext=extensionFor(file),name=Date.now()+'-'+Math.random().toString(36).slice(2,8)+'-'+safeName(file.name.replace(/\.[^.]+$/,''))+'.'+ext;
+    const path='assets/uploads/'+name,content=await fileToBase64(file);
+    await api('/repos/'+OWNER+'/'+REPO+'/contents/'+path.split('/').map(encodeURIComponent).join('/'),{method:'PUT',body:JSON.stringify({message:'Add photo via Boomers Crooners admin',content,branch})});
+    if(key.startsWith('gallery:')){const id=key.slice(8);const photo=data.gallery.find(g=>g.id===id);if(photo)photo.image=path;}else data[key]=path;
+  }
+  async function finish(){
+    if(busy||prCreated)return;readEditorIntoData();
+    if(!dirty&&!Object.keys(pendingUploads).length){setStatus('save-status','Aucune modification détectée. Modifie un champ ou ajoute une image avant de terminer.','info');return;}
+    const snapshot=JSON.stringify(normalizeData());if(snapshot===originalSnapshot&&!Object.keys(pendingUploads).length){setStatus('save-status','Aucun changement réel à enregistrer. Les valeurs sont identiques à celles déjà publiées.','info');return;}
+    if(!window.confirm('Créer une branche et proposer les changements dans une Pull Request ? Rien ne sera publié automatiquement.'))return;
+    busy=true;$('finish').disabled=true;let step='Vérification de la version publiée';branchName='';clearStatus('save-status');
+    try{
+      setStatus('save-status',step+'…','info');
+      const liveFile=await api(contentsUrl('site-data.json',BASE));
+      if(liveFile.sha!==originalSha)throw new Error('Le fichier site-data.json a changé sur main depuis ta connexion. Pour éviter d’écraser des modifications récentes, déconnecte-toi puis reconnecte-toi et réapplique tes changements.');
+      const mainRef=await api('/repos/'+OWNER+'/'+REPO+'/git/ref/heads/'+BASE);
+      const stamp=new Date().toISOString().replace(/[-:T]/g,'').slice(0,12).toLowerCase();
+      branchName='admin/site-update-'+stamp+'-'+Math.random().toString(36).slice(2,9);
+      step='Création de la branche '+branchName;setStatus('save-status',step+'…','info');
+      await api('/repos/'+OWNER+'/'+REPO+'/git/refs',{method:'POST',body:JSON.stringify({ref:'refs/heads/'+branchName,sha:mainRef.object.sha})});
+      const uploads=Object.entries(pendingUploads);
+      for(let i=0;i<uploads.length;i++){step='Téléversement de la photo '+(i+1)+'/'+uploads.length;setStatus('save-status',step+'…','info');await uploadImage(uploads[i][1],uploads[i][0],branchName);}
+      step='Vérification du fichier sur la nouvelle branche';setStatus('save-status',step+'…','info');
+      const branchFile=await api(contentsUrl('site-data.json',branchName));
+      if(branchFile.sha!==originalSha)throw new Error('Le fichier site-data.json de la branche ne correspond pas à la version chargée. La branche est conservée pour diagnostic, mais le fichier n’a pas été écrasé.');
+      const payload=normalizeData();step='Enregistrement de site-data.json dans la branche';setStatus('save-status',step+'…','info');
+      await api('/repos/'+OWNER+'/'+REPO+'/contents/site-data.json',{method:'PUT',body:JSON.stringify({message:'Update Boomers Crooners website content',content:encodeBase64Utf8(JSON.stringify(payload,null,2)+'\n'),sha:branchFile.sha,branch:branchName})});
+      step='Création de la Pull Request';setStatus('save-status',step+'…','info');
+      const pr=await api('/repos/'+OWNER+'/'+REPO+'/pulls',{method:'POST',body:JSON.stringify({title:'Mise à jour du site Boomers Crooners',head:branchName,base:BASE,body:'Mise à jour proposée depuis le panneau d’administration Boomers Crooners. Vérifier les textes, les images, les dates et les liens avant de fusionner.\n\nAucune publication automatique.'})});
+      prCreated=true;dirty=false;pendingUploads={};originalSha=(await api(contentsUrl('site-data.json',BASE))).sha;updateDirtyNote();
+      setStatus('save-status','Pull Request créée avec succès : #'+pr.number+'. Rien n’a été publié automatiquement. Vérifie les changements puis fusionne la PR pour les publier.','ok',[{href:pr.html_url,label:'Ouvrir la Pull Request #'+pr.number+' ↗'},{href:branchLink(branchName),label:'Voir la branche créée ↗'}]);
+      $('finish').disabled=true;
+    }catch(err){
+      const links=[];if(branchName){links.push({href:branchLink(branchName),label:'Voir la branche créée ↗'});links.push({href:compareLink(branchName),label:'Comparer main et cette branche / créer la Pull Request manuellement ↗'});}
+      setStatus('save-status','Échec pendant l’étape : '+step+'\n\n'+err.message+(branchName?'\n\nLa branche existe peut-être, même si la Pull Request n’a pas été créée. Utilise les liens ci-dessous pour vérifier.':''),'error',links);
+    }finally{busy=false;$('finish').disabled=prCreated||(!dirty&&!Object.keys(pendingUploads).length);}
+  }
+  function logout(){token='';data=null;originalSha='';originalSnapshot='';loggedUser='';dirty=false;busy=false;prCreated=false;branchName='';pendingUploads={};$('token').value='';$('editor').classList.add('hidden');$('login-card').classList.remove('hidden');clearStatus('login-status');clearStatus('save-status');$('finish').disabled=true;}
+  $('connect').addEventListener('click',connect);$('token').addEventListener('keydown',e=>{if(e.key==='Enter')connect();});$('logout').addEventListener('click',logout);$('finish').addEventListener('click',finish);
+  $('add-concert').addEventListener('click',()=>{readEditorIntoData();data.concerts.push({date:'',title:'',venue:'',city:'',ticketUrl:''});renderConcerts();markDirty();});
+  $('add-photo').addEventListener('click',()=>{readEditorIntoData();data.gallery.push({id:'photo-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),image:'',caption:'',alt:''});renderGallery();markDirty();});
+  $('concerts').addEventListener('click',e=>{const btn=e.target.closest('[data-remove-concert]');if(!btn)return;readEditorIntoData();data.concerts.splice(Number(btn.dataset.removeConcert),1);renderConcerts();markDirty();});
+  $('gallery').addEventListener('click',e=>{const btn=e.target.closest('[data-remove-photo]');if(!btn)return;readEditorIntoData();const removed=data.gallery.splice(Number(btn.dataset.removePhoto),1)[0];if(removed)delete pendingUploads['gallery:'+removed.id];renderGallery();markDirty();});
+  $('editor').addEventListener('input',e=>{const el=e.target;if(el.dataset.field){data[el.dataset.field]=el.value;markDirty();return;}if(el.dataset.key){readEditorIntoData();markDirty();}});
+  $('editor').addEventListener('change',e=>{const el=e.target;if(el.dataset.uploadField||el.dataset.uploadGallery){const file=el.files&&el.files[0];if(!file)return;if(!/^image\/(jpeg|png|webp)$/.test(file.type)){setStatus('edit-status','Format non accepté : sélectionne une image JPG, PNG ou WebP.','error');el.value='';return;}if(file.size>3*1024*1024){setStatus('edit-status','Cette image dépasse 3 Mo. Choisis une image plus légère.','error');el.value='';return;}const key=el.dataset.uploadField||('gallery:'+el.dataset.uploadGallery);pendingUploads[key]=file;setStatus('edit-status','Image sélectionnée : '+file.name+'. Elle sera téléversée au moment de créer la Pull Request.','info');markDirty();}});
+})();
+</script>
+</body>
+</html>
