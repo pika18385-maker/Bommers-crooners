@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Administration — Boomers Crooners</title>
+<style>
+:root{color-scheme:dark;--bg:#101116;--panel:#191a21;--text:#f6f1e8;--muted:#bcb8b1;--gold:#e0b568;--line:#393a42}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,sans-serif}.wrap{max-width:950px;margin:auto;padding:20px}.top{padding:24px 0;border-bottom:1px solid var(--line)}h1,h2{font-family:Georgia,serif}.muted{color:var(--muted)}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px;min-width:0}.full{grid-column:1/-1}label{font-weight:650;font-size:.92rem}input,textarea{font:inherit;width:100%;padding:10px;border:1px solid #555761;border-radius:8px;background:#101116;color:var(--text)}textarea{min-height:95px;resize:vertical}button,.btn{font:inherit;font-weight:750;padding:10px 14px;border-radius:9px;border:1px solid var(--gold);background:var(--gold);color:#19150e;cursor:pointer;text-decoration:none;display:inline-block}.secondary{background:transparent;color:var(--text);border-color:#60616b}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.status{white-space:pre-wrap;border:1px solid var(--line);border-radius:9px;padding:12px;margin-top:12px;display:none}.status.show{display:block}.error{color:#ffb6b6;border-color:#754047;background:#301d21}.ok{color:#b8f3cc;border-color:#376248;background:#19291f}.hint{border-left:3px solid var(--gold);padding:10px 12px;background:#28251f;margin:12px 0}.item{border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}.item h3{margin-top:0}.image-preview{display:block;max-width:100%;max-height:190px;object-fit:contain;border:1px solid var(--line);border-radius:8px;margin-top:9px;background:#101116}.file-input{font-size:.9rem}.savebar{position:sticky;bottom:0;background:#101116f2;padding:12px 0;border-top:1px solid var(--line)}@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.wrap{padding:14px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><p class="muted">BOOMERS CROONERS · ESPACE ADMIN</p><h1>Administration du site</h1><p class="muted">Modifie les informations, ajoute directement les photos depuis ton appareil, puis télécharge <code>site-data.json</code>. Les photos choisies seront intégrées dans le JSON, donc tu n’auras pas à les téléverser séparément. Aucun jeton GitHub n’est nécessaire.</p></div></header>
+<main class="wrap">
+<section class="card">
+<h2>1. Charger les données actuelles</h2>
+<p class="muted">Le panneau tente de charger automatiquement les données publiques du site. Si cela ne fonctionne pas, tu peux ouvrir le fichier JSON de ton dépôt et le coller dans la zone ci-dessous.</p>
+<div class="buttons"><button id="reload" type="button" class="secondary">Recharger depuis le site</button><a class="btn secondary" href="https://github.com/pika18385-maker/Bommers-crooners/blob/main/site-data.json" target="_blank" rel="noopener">Ouvrir site-data.json sur GitHub ↗</a></div>
+<div id="status" class="status" role="status" aria-live="polite"></div>
+</section>
+<section class="card">
+<h2>2. Modifier les textes et liens</h2>
+<div id="fields" class="grid"></div>
+</section>
+<section class="card">
+<h2>3. Concerts et galerie</h2>
+<p class="muted">Modifie ces deux zones au format JSON. Les concerts doivent rester une liste entre crochets <code>[ ]</code>. Chaque photo de galerie doit comporter <code>id</code>, <code>image</code>, <code>caption</code> et <code>alt</code>. Tu peux sélectionner un fichier photo pour chaque image ci-dessous : elle sera intégrée au JSON.</p>
+<div class="field"><label for="concerts">Concerts (JSON)</label><textarea id="concerts" spellcheck="false"></textarea></div>
+<div class="field" style="margin-top:14px"><label for="gallery">Galerie (JSON)</label><textarea id="gallery" spellcheck="false"></textarea></div>
+<div id="galleryUploads" class="grid" style="margin-top:16px"></div>
+</section>
+<section class="card">
+<h2>4. Fichier JSON complet (optionnel)</h2>
+<p class="muted">Cette zone contient toutes les données du site. Tu peux la modifier directement si tu sais éditer du JSON. Si tu la modifies, elle sera utilisée à la place des champs au-dessus.</p>
+<div class="field"><label for="raw">site-data.json</label><textarea id="raw" spellcheck="false" style="min-height:260px"></textarea></div>
+<div class="buttons"><button id="useRaw" type="button" class="secondary">Charger le JSON dans les champs</button><button id="useFields" type="button" class="secondary">Regénérer le JSON depuis les champs</button></div>
+</section>
+<div class="savebar"><div class="buttons"><button id="download" type="button">Télécharger site-data.json (avec photos)</button><button id="downloadIndex" type="button" class="secondary">Télécharger index.html compatible</button><button id="validate" type="button" class="secondary">Vérifier le JSON</button></div></div>
+<section class="card"><h2>Après le téléchargement</h2><ol><li>Ouvre le dépôt GitHub <a href="https://github.com/pika18385-maker/Bommers-crooners" target="_blank" rel="noopener">Bommers Crooners</a>.</li><li>Crée une nouvelle branche depuis <code>main</code>.</li><li>Dans cette branche, remplace le fichier <code>site-data.json</code> par le fichier téléchargé.</li><li>Ouvre une Pull Request vers <code>main</code>, vérifie les changements, puis fusionne-la pour publier.</li></ol><p class="hint">Le fichier <code>site-data.json</code> contiendra les photos sélectionnées sous forme d’images intégrées (JPEG optimisés). Télécharge aussi <code>index.html</code> compatible et remplace les deux fichiers dans la même branche GitHub avant d’ouvrir ta Pull Request. Les photos déjà hébergées par URL restent des liens externes tant que tu ne les remplaces pas avec un fichier photo.</p></section>
+</main>
+<script>
+(() => {
+'use strict';
+const dataUrl='./site-data.json';
+const scalarFields=[
+['groupName','Nom du groupe'],['strapline','Phrase sous le nom'],['heroTitle','Titre principal'],['heroText','Texte d’introduction'],
+['heroImage','URL de l’image de couverture'],['aboutTitle','Titre de présentation'],['aboutText','Texte de présentation'],
+['aboutImage','URL de la photo de présentation'],['musicTitle','Titre de la section musique'],['musicText','Texte de la section musique'],
+['musicLink','Lien d’écoute'],['musicImage','URL de l’image musique'],['concertsTitle','Titre de l’agenda'],
+['galleryTitle','Titre de la galerie'],['contactTitle','Titre de contact'],['contactText','Texte de contact'],
+['email','E-mail public'],['instagram','Lien Instagram'],['youtube','Lien YouTube'],['facebook','Lien Facebook']
+];
+let current={};
+const uploadedImages={};
+const uploadedGalleryImages={};
+const $=id=>document.getElementById(id);
+function status(msg,kind='ok'){const el=$('status');el.textContent=msg;el.className='status show '+kind;}
+function showPreview(img,value){if(value && (value.startsWith('https://')||value.startsWith('http://')||/^data:image\/(?:jpeg|png|webp);base64,/i.test(value))){img.src=value;img.hidden=false;}else{img.removeAttribute('src');img.hidden=true;}}
+async function compressImage(file){
+ if(!file || !file.type.startsWith('image/')) throw Error('Choisis un fichier image.');
+ if(file.size>20*1024*1024) throw Error('Cette image dépasse 20 Mo. Choisis une image plus petite.');
+ let bitmap;
+ try{bitmap=await createImageBitmap(file);}catch(e){throw Error('Impossible de lire cette image. Essaie une photo JPEG, PNG ou WebP.');}
+ const maxSide=1500,scale=Math.min(1,maxSide/Math.max(bitmap.width,bitmap.height));
+ const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));
+ const ctx=canvas.getContext('2d');if(!ctx){bitmap.close?.();throw Error('Le traitement d’image n’est pas disponible.');}
+ ctx.fillStyle='#ffffff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close?.();
+ return canvas.toDataURL('image/jpeg',0.80);
+}
+function slug(value){return String(value||'photo').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,48)||'photo';}
+function mergeUploadedImages(obj){
+ scalarFields.forEach(([key])=>{if(uploadedImages[key])obj[key]=uploadedImages[key];});
+ if(Array.isArray(obj.gallery)){obj.gallery.forEach((item,index)=>{const key=String(item&&item.id!=null&&String(item.id).trim()?item.id:index);if(uploadedGalleryImages[key])item.image=uploadedGalleryImages[key];});}
+ return obj;
+}
+function getExportObject(){
+ const raw=$('raw').value.trim();
+ let obj=(raw && raw!==JSON.stringify(current,null,2))?JSON.parse(raw):fromFields();
+ if(!obj||typeof obj!=='object'||Array.isArray(obj))throw Error('Le contenu doit être un objet JSON.');
+ if(!Array.isArray(obj.concerts)||!Array.isArray(obj.gallery))throw Error('concerts et gallery doivent être des listes JSON.');
+ return mergeUploadedImages(obj);
+}
+function attachImagePicker(container,initialValue,onImage,labelText){
+ const label=document.createElement('label');label.textContent=labelText;container.appendChild(label);
+ const file=document.createElement('input');file.type='file';file.accept='image/jpeg,image/png,image/webp,image/gif';file.className='file-input';container.appendChild(file);
+ const preview=document.createElement('img');preview.className='image-preview';preview.alt='Aperçu de la photo';showPreview(preview,initialValue||'');container.appendChild(preview);
+ file.addEventListener('change',async()=>{const f=file.files&&file.files[0];if(!f)return;try{status('Optimisation de « '+f.name+' »…');const data=await compressImage(f);onImage(data,f.name,preview);showPreview(preview,data);status('Photo intégrée : '+f.name+'. Elle sera incluse dans le JSON téléchargé.');}catch(e){status(e.message,'error');}finally{file.value='';}});
+}
+function buildFields(obj){
+ const root=$('fields');root.replaceChildren();
+ scalarFields.forEach(([key,label])=>{
+  const wrap=document.createElement('div');wrap.className='field'+(/Text$|^heroTitle$|^strapline$/.test(key)?' full':'');
+  const lab=document.createElement('label');lab.htmlFor='f-'+key;lab.textContent=label;wrap.appendChild(lab);
+  const el=document.createElement(/Text$|^heroTitle$|^strapline$/.test(key)?'textarea':'input');
+  el.id='f-'+key;el.value=obj[key]??'';el.dataset.key=key;
+  if(/Image$|^musicLink$|^instagram$|^youtube$|^facebook$/.test(key))el.type='url';
+  if(key==='email')el.type='email';
+  wrap.appendChild(el);
+  if(/Image$/.test(key)){
+   attachImagePicker(wrap,obj[key],(data,fileName,preview)=>{uploadedImages[key]=data;el.value='Photo intégrée : '+fileName;},'Choisir/remplacer cette photo');
+   el.addEventListener('input',()=>{if(uploadedImages[key]){delete uploadedImages[key];showPreview(wrap.querySelector('.image-preview'),el.value);}});
+  }
+  root.appendChild(wrap);
+ });
+ $('concerts').value=JSON.stringify(obj.concerts||[],null,2);
+ $('gallery').value=JSON.stringify(obj.gallery||[],null,2);
+ $('raw').value=JSON.stringify(obj,null,2);
+ renderGalleryUploads(obj.gallery||[]);
+}
+function renderGalleryUploads(items){
+ const root=$('galleryUploads');root.replaceChildren();
+ if(!Array.isArray(items)){root.textContent='Impossible de lire la liste de photos. Vérifie le JSON de la galerie.';return;}
+ if(!items.length){const msg=document.createElement('p');msg.className='muted';msg.textContent='Aucune photo dans la galerie pour le moment. Ajoute des éléments dans le JSON de galerie, puis clique en dehors du champ pour actualiser les sélecteurs.';root.appendChild(msg);return;}
+ items.forEach((item,index)=>{const key=String(item&&item.id!=null&&String(item.id).trim()?item.id:index);const card=document.createElement('div');card.className='item';const title=document.createElement('h3');title.textContent=(item.caption||item.id||('Photo '+(index+1)))+' — galerie';card.appendChild(title);const chosen=uploadedGalleryImages[key]||((item&&typeof item.image==='string')?item.image:'');
+  attachImagePicker(card,chosen,(data,fileName,preview)=>{uploadedGalleryImages[key]=data;status('Photo de galerie intégrée : '+fileName+'. Elle sera incluse dans le JSON téléchargé.');},'Choisir/remplacer la photo');root.appendChild(card);
+ });
+}
+function fromFields(){
+ const out={...current};
+ scalarFields.forEach(([key])=>{const el=$('f-'+key);if(el)out[key]=el.value;});
+ try{out.concerts=JSON.parse($('concerts').value||'[]');if(!Array.isArray(out.concerts))throw Error('Concerts doit être une liste JSON.');}
+ catch(e){throw Error('JSON des concerts invalide : '+e.message);}
+ try{out.gallery=JSON.parse($('gallery').value||'[]');if(!Array.isArray(out.gallery))throw Error('La galerie doit être une liste JSON.');}
+ catch(e){throw Error('JSON de la galerie invalide : '+e.message);}
+ return out;
+}
+function setAll(obj){if(!obj||typeof obj!=='object'||Array.isArray(obj))throw Error('Le JSON doit être un objet.');Object.keys(uploadedImages).forEach(k=>delete uploadedImages[k]);Object.keys(uploadedGalleryImages).forEach(k=>delete uploadedGalleryImages[k]);current=obj;buildFields(obj);}
+async function load(){
+ try{const res=await fetch(dataUrl+'?v='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);setAll(await res.json());status('Données chargées depuis le site. Modifie les champs puis télécharge le fichier JSON.');}
+ catch(e){status('Chargement automatique impossible : '+e.message+'. Ouvre site-data.json sur GitHub, copie son contenu, colle-le dans la zone JSON complète, puis clique sur « Charger le JSON dans les champs ».','error');}
+}
+$('reload').addEventListener('click',load);
+$('gallery').addEventListener('change',()=>{try{renderGalleryUploads(JSON.parse($('gallery').value||'[]'));}catch(e){status('Le JSON de galerie doit être corrigé avant de choisir ses photos : '+e.message,'error');}});
+$('useRaw').addEventListener('click',()=>{try{setAll(JSON.parse($('raw').value));status('JSON chargé dans les champs.');}catch(e){status('JSON invalide : '+e.message,'error');}});
+$('useFields').addEventListener('click',()=>{try{const obj=mergeUploadedImages(fromFields());current=obj;$('raw').value=JSON.stringify(obj,null,2);status('JSON régénéré depuis les champs, avec les photos intégrées.');}catch(e){status(e.message,'error');}});
+$('validate').addEventListener('click',()=>{try{const obj=getExportObject();const json=JSON.stringify(obj);status('JSON valide. Concerts : '+obj.concerts.length+' ; photos de galerie : '+obj.gallery.length+' ; taille estimée : '+Math.round(new Blob([json]).size/1024)+' Ko.');}catch(e){status('Vérification échouée : '+e.message,'error');}});
+$('download').addEventListener('click',()=>{
+ try{
+  const obj=getExportObject();
+  const json=JSON.stringify(obj,null,2)+'\n';
+  const blob=new Blob([json],{type:'application/json;charset=utf-8'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='site-data.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+  status('Fichier site-data.json téléchargé avec les photos sélectionnées. Taille : '+Math.round(blob.size/1024)+' Ko. Remplace aussi index.html par la version compatible, puis crée une Pull Request.');
+ }catch(e){status('Téléchargement impossible : '+e.message,'error');}
+});
+$('downloadIndex').addEventListener('click',async()=>{
+ try{
+  const res=await fetch('./index.html?v='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('Impossible de charger index.html depuis le site.');
+  let html=await res.text();
+  const oldFn='function safeUrl(value){if(typeof value!=="string"||!value.trim())return "";try{var u=new URL(value,document.baseURI);if(u.protocol==="https:"||u.protocol==="http:")return u.href;if(value.indexOf("assets/")===0||value.indexOf("./")===0)return value;}catch(e){}return "";}';
+  const newFn='function safeUrl(value){if(typeof value!=="string"||!value.trim())return "";if(/^data:image\\/(?:jpeg|png|webp);base64,/i.test(value))return value;try{var u=new URL(value,document.baseURI);if(u.protocol==="https:"||u.protocol==="http:")return u.href;if(value.indexOf("assets/")===0||value.indexOf("./")===0)return value;}catch(e){}return "";}';
+  if(!html.includes(oldFn)){if(html.includes('data:image\\/(?:jpeg|png|webp)'))throw Error('index.html accepte déjà les images intégrées.');throw Error('La fonction image du site a changé : je ne peux pas adapter index.html automatiquement.');}
+  html=html.replace(oldFn,newFn);
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='index.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+  status('index.html compatible téléchargé. Ce fichier autorise les images intégrées dans site-data.json. Remplace index.html et site-data.json dans la même branche GitHub.');
+ }catch(e){status('Téléchargement de index.html impossible : '+e.message,'error');}
+});
+load();
+})();
+</script>
+</body>
+</html>
